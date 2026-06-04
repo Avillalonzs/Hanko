@@ -1,5 +1,9 @@
 // galeria/Galeria.jsx
-
+import img1 from "../../../assets/productos/Imagen1.webp";
+import img4 from "../../../assets/productos/Imagen4.webp";
+import img5 from "../../../assets/productos/Imagen5.webp";
+import img6 from "../../../assets/productos/Imagen6.webp";
+import img7 from "../../../assets/productos/Imagen7.webp";
 import { useState } from "react";
 import "./galeria.css";
 
@@ -9,40 +13,40 @@ export default function Galeria() {
 
     const galleryItems = [
         {
-            title: "Penthouse Vitacura",
-            subtitle: "Línea Doble Magistral",
-            image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=8",
-            full: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1400",
-            className: "wide",
-        },
-        {
-            title: "Residencia Lo Barnechea",
-            subtitle: "Minimalist Screen",
-            image: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=800",
-            full: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1400",
-            className: "",
-        },
-        {
-            title: "Master Suite Las Condes",
-            subtitle: "Blackout Armonía",
-            image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=800",
-            full: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1400",
-            className: "tall",
-        },
-        {
-            title: "Sala de Estar Providencia",
-            subtitle: "Zebra Elegance",
-            image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=800",
-            full: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=1400",
-            className: "",
-        },
-        {
-            title: "Oficinas Corporativas El Golf",
-            subtitle: "Screen Técnico",
-            image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800",
-            full: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1400",
-            className: "wide",
-        },
+        title: "Penthouse Vitacura",
+        subtitle: "Línea Doble Magistral",
+        image: img1,
+        full: img1,
+        className: "wide",
+    },
+    {
+        title: "Residencia Lo Barnechea",
+        subtitle: "Minimalist Screen",
+        image: img4,
+        full: img4,
+        className: "",
+    },
+    {
+        title: "Master Suite Las Condes",
+        subtitle: "Blackout Armonía",
+        image: img5,
+        full: img5,
+        className: "tall",
+    },
+    {
+        title: "Sala de Estar Providencia",
+        subtitle: "Zebra Elegance",
+        image: img6,
+        full: img6,
+        className: "",
+    },
+    {
+        title: "Oficinas Corporativas El Golf",
+        subtitle: "Screen Técnico",
+        image: img7,
+        full: img7,
+        className: "wide",
+    },
     ];
 
     const openModal = (src) => {
