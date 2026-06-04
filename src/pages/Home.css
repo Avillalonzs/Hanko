@@ -1,0 +1,249 @@
+/* src/pages/home/Home.css */
+
+.sec {
+    padding: calc(var(--nav-height) + 90px) 5% 110px;
+}
+
+.sec-inner {
+    max-width: 1400px;
+    margin: auto;
+}
+
+.sec-head {
+    margin-bottom: 4.5rem;
+    text-align: center;
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--oro);
+    margin-bottom: 1.2rem;
+}
+
+.tag::before,
+.tag::after {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--oro);
+}
+
+.sec-title {
+    font-family: var(--serif-premium);
+    font-size: clamp(2.5rem, 4.5vw, 4.2rem);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--negro-absoluto);
+}
+
+.sec-title em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--oro);
+}
+
+.sec-lead {
+    max-width: 650px;
+    margin: 1.5rem auto 0;
+    line-height: 1.8;
+    color: var(--gris-medio);
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+#hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background-color: var(--negro-absoluto);
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1617806118233-18e1db207f62?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
+    opacity: 0.45;
+    transform: scale(1.05);
+    transition: transform 0.2s linear;
+}
+
+.hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(10, 10, 10, 0.95) 30%, rgba(10, 10, 10, 0.4) 70%, rgba(10, 10, 10, 0.1) 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: calc(var(--nav-height) + 60px) 5% 80px;
+    max-width: 800px;
+    color: var(--blanco);
+}
+
+.hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--oro);
+    margin-bottom: 1.8rem;
+}
+
+.hero-eyebrow::before {
+    content: '';
+    width: 30px;
+    height: 1px;
+    background: var(--oro);
+}
+
+.hero-title {
+    font-family: var(--serif-premium);
+    font-size: clamp(3.5rem, 6.5vw, 6.8rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 2rem;
+}
+
+.hero-title em {
+    font-style: italic;
+    color: var(--oro);
+    font-family: var(--serif-premium);
+}
+
+.hero-sub {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    max-width: 580px;
+    margin-bottom: 3rem;
+    font-weight: 300;
+}
+
+.hero-btns {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+}
+
+.btn-primary {
+    height: 58px;
+    padding: 0 2.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    background: var(--oro);
+    color: var(--blanco);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: all 0.3s var(--ease-premium);
+}
+
+.btn-primary:hover {
+    background: var(--oro-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(197, 164, 110, 0.25);
+}
+
+.btn-secondary {
+    height: 58px;
+    padding: 0 2.5rem;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: var(--blanco);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: all 0.3s var(--ease-premium);
+}
+
+.btn-secondary:hover {
+    border-color: var(--oro);
+    color: var(--oro);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.hero-trust {
+    position: absolute;
+    right: 5%;
+    bottom: 10%;
+    z-index: 2;
+    display: flex;
+    gap: 2rem;
+}
+
+.trust-badge {
+    background: rgba(18, 18, 18, 0.6);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-premium);
+    padding: 1.5rem 2rem;
+    min-width: 150px;
+    text-align: center;
+}
+
+.trust-badge strong {
+    display: block;
+    font-family: var(--serif-premium);
+    font-size: 2.4rem;
+    font-weight: 400;
+    color: var(--oro);
+    line-height: 1;
+}
+
+.trust-badge span {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+}
+
+.wa-float {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    height: 54px;
+    padding: 0 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    border-radius: 30px;
+    text-decoration: none;
+    background: #25D366;
+    color: var(--blanco);
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+    z-index: 6000;
+    transition: all 0.3s var(--ease-premium);
+}
+
+.wa-float:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
+}

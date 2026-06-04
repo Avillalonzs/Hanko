@@ -1,0 +1,139 @@
+/* src/components/navbar/Navbar.css */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--nav-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    z-index: 5000;
+    transition: all 0.4s var(--ease-premium);
+}
+
+.logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+}
+
+.logo-icon {
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--oro);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.logo-stripes {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 50%;
+}
+
+.ls {
+    height: 1px;
+    background: var(--oro);
+}
+
+.ls:nth-child(1) {
+    width: 100%;
+}
+
+.ls:nth-child(2) {
+    width: 70%;
+}
+
+.ls:nth-child(3) {
+    width: 100%;
+}
+
+.logo-text {
+    line-height: 1;
+}
+
+.logo-sub {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--oro);
+    margin-bottom: 0.2rem;
+}
+
+.logo-name {
+    display: block;
+    font-family: var(--serif-premium);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--negro-absoluto);
+    letter-spacing: -0.02em;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--gris-texto-oscuro);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color 0.3s;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--oro);
+    transition: width 0.3s var(--ease-premium);
+}
+
+.nav-links a:hover {
+    color: var(--oro);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.btn-nav {
+    height: 46px;
+    padding: 0 1.8rem;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    background: var(--negro-absoluto);
+    color: var(--blanco);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: all 0.3s var(--ease-premium);
+}
+
+.btn-nav:hover {
+    background: var(--oro);
+    transform: translateY(-2px);
+}

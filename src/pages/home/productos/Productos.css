@@ -1,0 +1,24 @@
+/* src/pages/home/productos/Productos.css */
+
+#productos {
+    background: var(--crema-premium);
+}
+
+.prod-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+@media(max-width:1200px) {
+    .prod-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+@media(max-width:640px) {
+    .prod-grid {
+        grid-template-columns: 1fr;
+    }
+}
