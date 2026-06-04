@@ -27,9 +27,6 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
       - name: Deploy via FTP (dist only)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
