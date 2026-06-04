@@ -1,6 +1,6 @@
 // strip/Strip.jsx
 
-import "./strip.css";
+import "../strip/Strip.css";
 
 export default function Strip() {
     return (

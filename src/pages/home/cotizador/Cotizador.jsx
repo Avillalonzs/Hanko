@@ -1,7 +1,7 @@
 // cotizador/Cotizador.jsx
 
 import { useState } from "react";
-import "./cotizador.css";
+import "./Cotizador.css";
 
 export default function Cotizador() {
     const [tipo, setTipo] = useState(35000);

@@ -1,5 +1,5 @@
 // src/data/productos.js
-import screenImg from "../assets/productos/screen.webp";
+import screenImg from "../assets/productos/Screen.webp";
 import imagen3Img from "../assets/productos/Imagen3.webp";
 import imagen10Img from "../assets/productos/Imagen10.webp";
 import imagen11Img from "../assets/productos/Imagen11.webp";
