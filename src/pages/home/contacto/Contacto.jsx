@@ -1,6 +1,6 @@
 // contacto/Contacto.jsx
 
-import "./contacto.css";
+import "./Contacto.css";
 
 import {
     WHATSAPP_BASE,
