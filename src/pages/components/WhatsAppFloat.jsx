@@ -1,6 +1,6 @@
 // src/components/whatsapp/WhatsAppFloat.jsx
 
-import "./WhatsappFloat.css";
+import "./WhatsAppFloat.css";
 
 import {
     WHATSAPP_LINK,

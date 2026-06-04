@@ -5,7 +5,7 @@ import img5 from "../../../assets/productos/Imagen5.webp";
 import img6 from "../../../assets/productos/Imagen6.webp";
 import img7 from "../../../assets/productos/Imagen7.webp";
 import { useState } from "react";
-import "./galeria.css";
+import "./Galeria.css";
 
 export default function Galeria() {
     const [modalImage, setModalImage] = useState("");
@@ -13,7 +13,7 @@ export default function Galeria() {
 
     const galleryItems = [
         {
-        title: "Penthouse Vitacura",
+        title: "House Chicureo",
         subtitle: "Línea Doble Magistral",
         image: img1,
         full: img1,
