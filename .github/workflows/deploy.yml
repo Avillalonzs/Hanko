@@ -31,17 +31,22 @@ jobs:
       - name: Deploy via FTP (dist only)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: ftp.rollerhanko.cl
-          username: u349541296.rollerhanko
+          # IP exacta provista por Hostinger en tu captura
+          server: 82.180.138.197
+          
+          # Nombre de usuario completo con el ".cl" al final
+          username: u349541296.rollerhanko.cl
           password: ${{ secrets.FTP_PASS }}
 
-          protocol: ftps
-          security: loose
+          # Protocolo estándar para puerto 21 en Hostinger
+          protocol: ftp
           port: 21
 
+          # Carpeta local que genera tu comando "npm run build"
           local-dir: ./dist/
-          server-dir: ./
+          
+          # Carpeta destino del hosting para que tu web sea visible al público
+          server-dir: ./public_html/
 
           dangerous-clean-slate: false
-
           timeout: 120000
