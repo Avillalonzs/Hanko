@@ -30,17 +30,14 @@ jobs:
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USER }}
+      - name: Deploy via FTP (dist only)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ftp.rollerhanko.cl
+          username: u349541296.rollerhanko
           password: ${{ secrets.FTP_PASS }}
-
-          protocol: ftp
-          security: loose
           port: 21
-
+          protocol: ftp
           local-dir: ./dist/
-          server-dir: ./
-
-          dangerous-clean-slate: false
-
-          timeout: 120000
+          server-dir: /public_html/
+          log-level: verbose
