@@ -1,43 +1,60 @@
-/* components/whatsapp/whatsappFloat.css */
+/* src/components/whatsappfloat/whatsappfloat.css */
 
 .wa-float {
     position: fixed;
+
     right: 30px;
     bottom: 30px;
+
     height: 54px;
     padding: 0 1.6rem;
+
     display: flex;
     align-items: center;
     gap: 0.8rem;
+
     border-radius: 30px;
+
     text-decoration: none;
-    background: #25d366;
+
+    background: #25D366;
     color: var(--blanco);
+
     font-size: 0.85rem;
     font-weight: 600;
-    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+
+    box-shadow:
+        0 10px 30px rgba(37, 211, 102, 0.3);
+
     z-index: 6000;
-    transition: all 0.3s var(--ease-premium);
+
+    transition:
+        transform 0.3s var(--ease-premium),
+        box-shadow 0.3s var(--ease-premium);
 }
 
 .wa-float:hover {
     transform: translateY(-4px);
-    box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
-}
 
-.wa-icon {
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    box-shadow:
+        0 15px 30px rgba(37, 211, 102, 0.4);
 }
 
 @media (max-width: 640px) {
     .wa-float {
         right: 16px;
+        left: 16px;
+
         bottom: 16px;
-        height: 50px;
-        padding: 0 1.2rem;
-        font-size: 0.75rem;
+
+        width: auto;
+
+        justify-content: center;
+
+        font-size: 0.8rem;
+
+        padding: 0 1rem;
+
+        border-radius: 20px;
     }
 }
