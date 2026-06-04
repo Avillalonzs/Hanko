@@ -1,6 +1,6 @@
 // home/Home.jsx
 
-import "./home.css";
+import "./Home.css";
 import Productos from "../pages/home/productos/Productos";
 import Strip from "../pages/home/strip/Strip";
 import Galeria from "../pages/home/galeria/Galeria";
