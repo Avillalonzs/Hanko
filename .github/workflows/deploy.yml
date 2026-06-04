@@ -39,7 +39,7 @@ jobs:
           password: ${{ secrets.FTP_PASS }}
 
           # Protocolo estándar para puerto 21 en Hostinger
-          protocol: ftp
+          protocol: sftp
           port: 21
 
           # Carpeta local que genera tu comando "npm run build"
@@ -49,4 +49,3 @@ jobs:
           server-dir: ./public_html/
 
           dangerous-clean-slate: false
-          timeout: 120000
