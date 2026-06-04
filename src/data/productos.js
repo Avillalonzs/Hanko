@@ -1,9 +1,13 @@
 // src/data/productos.js
+import screenImg from "../assets/productos/screen.webp";
+import imagen3Img from "../assets/productos/Imagen3.webp";
+import imagen10Img from "../assets/productos/Imagen10.webp";
+import imagen11Img from "../assets/productos/Imagen11.webp";
 
 const productos = [
     {
         badge: "Filtro Solar Optimo",
-        image: "../../assets/productos/screen.jpg",
+        image: screenImg,
         alt: "Roller Screen Premium",
         title: "Línea Screen",
         description:
@@ -14,7 +18,7 @@ const productos = [
 
     {
         badge: "Opacidad Absoluta",
-        image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=800&auto=format&fit=crop",
+        image: imagen3Img,
         alt: "Blackout Arquitectónico",
         title: "Blackout",
         description:
@@ -25,7 +29,7 @@ const productos = [
 
     {
         badge: "Dinamismo Visual",
-        image: "https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=800&auto=format&fit=crop",
+        image: imagen10Img,
         alt: "Zebra Roller Elegance",
         title: "Zebra Duo",
         description:
@@ -36,7 +40,7 @@ const productos = [
 
     {
         badge: "Sistemas Duales",
-        image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=800&auto=format&fit=crop",
+        image: imagen11Img,
         alt: "Doble Roller Hermitage",
         title: "Dobles",
         description:
