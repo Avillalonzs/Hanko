@@ -118,11 +118,11 @@ export const COTIZADOR_CONFIG = {
             value: 45000
         },
         {
-            label: "Zebra Luxury",
+            label: "Zebra Duo",
             value: 50000
         },
         {
-            label: "Doble Magistral",
+            label: "Dobles",
             value: 65000
         }
     ],
