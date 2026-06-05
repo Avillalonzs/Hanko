@@ -3,52 +3,52 @@
 import { useState } from "react";
 import "./Cotizador.css";
 
+import {
+    COMPANY_NAME,
+    WHATSAPP_BASE,
+    COTIZADOR_CONFIG,
+} from "../../../config/config";
+
 export default function Cotizador() {
-    const [tipo, setTipo] = useState(35000);
+    const [tipo, setTipo] = useState(
+        COTIZADOR_CONFIG.projectTypes[0].value
+    );
+
     const [ambiente, setAmbiente] = useState("");
     const [ancho, setAncho] = useState("");
     const [alto, setAlto] = useState("");
-    const [promoInput, setPromoInput] = useState("");
-    const [promo, setPromo] = useState(false);
-    const [promoMsg, setPromoMsg] = useState(
-        "Use el código HANKOWEB para acceder a un 10% de cortesía digital."
-    );
+
     const [items, setItems] = useState([]);
 
-    const formatCLP = (v) => "$" + v.toLocaleString("es-CL");
+    const formatCLP = (v) =>
+        "$" + v.toLocaleString("es-CL");
 
-    const visualOptions = [
-        {
-            id: "visual_screen",
-            value: 35000,
-            label: "Screen",
-            icon: "☀️",
-        },
-        {
-            id: "visual_blackout",
-            value: 45000,
-            label: "Blackout",
-            icon: "🌙",
-        },
-        {
-            id: "visual_zebra",
-            value: 50000,
-            label: "Zebra",
-            icon: "🟰",
-        },
-        {
-            id: "visual_doble",
-            value: 65000,
-            label: "Doble",
-            icon: "🧩",
-        },
-    ];
+    const visualOptions =
+        COTIZADOR_CONFIG.projectTypes.map(
+            (item, index) => ({
+                id: `visual_${index}`,
+                value: item.value,
+                label: item.label,
+                icon:
+                    index === 0
+                        ? "☀️"
+                        : index === 1
+                        ? "🌙"
+                        : index === 2
+                        ? "🟰"
+                        : "🧩",
+            })
+        );
 
     const getTipoText = (precio) => {
-        if (precio === 45000) return "Blackout Elite";
-        if (precio === 50000) return "Zebra Luxury";
-        if (precio === 65000) return "Doble Magistral";
-        return "Línea Screen";
+        const found =
+            COTIZADOR_CONFIG.projectTypes.find(
+                (item) => item.value === precio
+            );
+
+        return found
+            ? found.label
+            : COTIZADOR_CONFIG.projectTypes[0].label;
     };
 
     const agregarCotizacion = () => {
@@ -62,6 +62,7 @@ export default function Cotizador() {
             alert(
                 "Por favor, defina el nombre del espacio y dimensiones válidas."
             );
+
             return;
         }
 
@@ -88,67 +89,45 @@ export default function Cotizador() {
 
     const eliminarItem = (index) => {
         const nuevos = [...items];
+
         nuevos.splice(index, 1);
+
         setItems(nuevos);
     };
 
-    const subtotal = items.reduce(
+    const total = items.reduce(
         (acc, item) => acc + item.subtotal,
         0
     );
-
-    const total = promo
-        ? Math.round(subtotal * 0.9)
-        : subtotal;
-
-    const aplicarPromo = () => {
-        const code = promoInput.trim().toUpperCase();
-
-        if (code === "HANKOWEB") {
-            setPromo(true);
-
-            setPromoMsg(
-                "✔ El código de cortesía del 10% OFF ha sido aplicado al manifiesto."
-            );
-        } else {
-            setPromo(false);
-
-            setPromoMsg(
-                "✗ Código inválido. Valide su invitación digital."
-            );
-        }
-    };
 
     const enviarWhatsApp = () => {
         if (!items.length) {
             alert(
                 "Añada al menos un elemento para compilar el manifiesto."
             );
+
             return;
         }
 
         let msg =
-            "🏠 *Manifiesto de Arquitectura · Atelier Roller Hanko*\n\n";
+            `🏠 *Proyecto · ${COMPANY_NAME}*\n\n`;
 
         items.forEach((it, i) => {
             msg += `${i + 1}. *${it.ambiente}* — ${it.tipoText}\n`;
+
             msg += `   Dimensiones: ${it.ancho}×${it.alto} cm → Inversión: ${formatCLP(
                 it.subtotal
             )}\n`;
         });
-
-        if (promo) {
-            msg +=
-                "\n✨ Beneficio exclusivo 10% (HANKOWEB) aplicado.";
-        }
 
         msg += `\n\n*VALOR ESTIMADO TOTAL: ${formatCLP(
             total
         )}*`;
 
         window.open(
-            "https://wa.me/56952499961?text=" +
-            encodeURIComponent(msg),
+            `${WHATSAPP_BASE}?text=${encodeURIComponent(
+                msg
+            )}`,
             "_blank"
         );
     };
@@ -162,7 +141,7 @@ export default function Cotizador() {
                     </div>
 
                     <h2 className="sec-title">
-                        Configure su <em>Proyecto</em>
+                        {COTIZADOR_CONFIG.title}
                     </h2>
 
                     <p className="sec-lead">
@@ -178,67 +157,96 @@ export default function Cotizador() {
                         </div>
 
                         <div className="field">
-                            <label>Designación de Espacio</label>
+                            <label>
+                                Designación de Espacio
+                            </label>
 
                             <input
                                 type="text"
                                 value={ambiente}
                                 onChange={(e) =>
-                                    setAmbiente(e.target.value)
+                                    setAmbiente(
+                                        e.target.value
+                                    )
                                 }
-                                placeholder="Ej: Master Suite, Living Principal, Directorio"
+                                placeholder="Ej: Living, Dormitorio Principal, Oficina"
                             />
                         </div>
 
                         <div className="field">
-                            <label>Colección Textil</label>
+                            <label>
+                                {
+                                    COTIZADOR_CONFIG
+                                        .labels.projectType
+                                }
+                            </label>
 
                             <div className="visual-selector">
-                                {visualOptions.map((option) => (
-                                    <div
-                                        key={option.id}
-                                        className={`visual-option ${
-                                            tipo === option.value
-                                                ? "active"
-                                                : ""
-                                        }`}
-                                        onClick={() =>
-                                            setTipo(option.value)
-                                        }
-                                    >
-                                        <span className="visual-icon">
-                                            {option.icon}
-                                        </span>
+                                {visualOptions.map(
+                                    (option) => (
+                                        <div
+                                            key={option.id}
+                                            className={`visual-option ${
+                                                tipo ===
+                                                option.value
+                                                    ? "active"
+                                                    : ""
+                                            }`}
+                                            onClick={() =>
+                                                setTipo(
+                                                    option.value
+                                                )
+                                            }
+                                        >
+                                            <span className="visual-icon">
+                                                {
+                                                    option.icon
+                                                }
+                                            </span>
 
-                                        {option.label} (
-                                        {option.value / 1000}K/m²)
-                                    </div>
-                                ))}
+                                            {
+                                                option.label
+                                            }{" "}
+                                            (
+                                            {option.value /
+                                                1000}
+                                            K/m²)
+                                        </div>
+                                    )
+                                )}
                             </div>
                         </div>
 
                         <div className="field-grid">
                             <div className="field">
-                                <label>Ancho Real (cm)</label>
+                                <label>
+                                    Ancho Real (cm)
+                                </label>
 
                                 <input
                                     type="number"
                                     value={ancho}
                                     onChange={(e) =>
-                                        setAncho(e.target.value)
+                                        setAncho(
+                                            e.target.value
+                                        )
                                     }
                                     placeholder="120"
                                 />
                             </div>
 
                             <div className="field">
-                                <label>Alto Real (cm)</label>
+                                <label>
+                                    Alto Real (cm)
+                                </label>
 
                                 <input
                                     type="number"
                                     value={alto}
                                     onChange={(e) =>
-                                        setAlto(e.target.value)
+                                        setAlto(
+                                            e.target.value
+                                        )
                                     }
                                     placeholder="180"
                                 />
@@ -251,12 +259,13 @@ export default function Cotizador() {
                         >
                             + Añadir Elemento
                         </button>
-
                     </div>
 
                     <div className="cot-table-wrap">
                         <div className="cot-table-head">
-                            <h3>Resumen del Manifiesto</h3>
+                            <h3>
+                                Resumen del Manifiesto
+                            </h3>
 
                             <span className="cot-items-count">
                                 {items.length} elementos
@@ -267,9 +276,18 @@ export default function Cotizador() {
                             <table className="cot-table">
                                 <thead>
                                     <tr>
-                                        <th>Detalle Textil</th>
-                                        <th>Dimensiones</th>
-                                        <th>Inversión Subtotal</th>
+                                        <th>
+                                            Detalle Textil
+                                        </th>
+
+                                        <th>
+                                            Dimensiones
+                                        </th>
+
+                                        <th>
+                                            Inversión Subtotal
+                                        </th>
+
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -284,46 +302,64 @@ export default function Cotizador() {
                                             </td>
                                         </tr>
                                     ) : (
-                                        items.map((item, index) => (
-                                            <tr key={index}>
-                                                <td>
-                                                    <strong>
-                                                        {item.ambiente}
-                                                    </strong>
-                                                    <br />
+                                        items.map(
+                                            (
+                                                item,
+                                                index
+                                            ) => (
+                                                <tr
+                                                    key={
+                                                        index
+                                                    }
+                                                >
+                                                    <td>
+                                                        <strong>
+                                                            {
+                                                                item.ambiente
+                                                            }
+                                                        </strong>
 
-                                                    <small>
+                                                        <br />
+
+                                                        <small>
+                                                            {
+                                                                item.tipoText
+                                                            }
+                                                        </small>
+                                                    </td>
+
+                                                    <td>
                                                         {
-                                                            item.tipoText
-                                                        }
-                                                    </small>
-                                                </td>
+                                                            item.ancho
+                                                        }{" "}
+                                                        ×{" "}
+                                                        {
+                                                            item.alto
+                                                        }{" "}
+                                                        cm
+                                                    </td>
 
-                                                <td>
-                                                    {item.ancho} ×{" "}
-                                                    {item.alto} cm
-                                                </td>
+                                                    <td>
+                                                        {formatCLP(
+                                                            item.subtotal
+                                                        )}
+                                                    </td>
 
-                                                <td>
-                                                    {formatCLP(
-                                                        item.subtotal
-                                                    )}
-                                                </td>
-
-                                                <td>
-                                                    <button
-                                                        className="cot-delete"
-                                                        onClick={() =>
-                                                            eliminarItem(
-                                                                index
-                                                            )
-                                                        }
-                                                    >
-                                                        ✕
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        ))
+                                                    <td>
+                                                        <button
+                                                            className="cot-delete"
+                                                            onClick={() =>
+                                                                eliminarItem(
+                                                                    index
+                                                                )
+                                                            }
+                                                        >
+                                                            ✕
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            )
+                                        )
                                     )}
                                 </tbody>
                             </table>
@@ -332,7 +368,11 @@ export default function Cotizador() {
                         <div className="cot-total-bar">
                             <div>
                                 <div className="total-label">
-                                    Inversión Estimada Total
+                                    {
+                                        COTIZADOR_CONFIG
+                                            .result
+                                            .title
+                                    }
                                 </div>
                             </div>
 
@@ -344,10 +384,12 @@ export default function Cotizador() {
                         <div className="cot-footer">
                             <button
                                 className="btn-send-quote"
-                                onClick={enviarWhatsApp}
+                                onClick={
+                                    enviarWhatsApp
+                                }
                             >
-                                Transferir Proyecto a un Diseñador por
-                                WhatsApp
+                                Transferir Proyecto a un
+                                Diseñador por WhatsApp
                             </button>
                         </div>
                     </div>
