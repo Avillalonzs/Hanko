@@ -6,12 +6,24 @@ import "./Cotizador.css";
 import {
     COMPANY_NAME,
     WHATSAPP_BASE,
-    COTIZADOR_CONFIG,
 } from "../../../config/config";
+
+import {
+    visualOptions,
+    getTipoText,
+    formatCLP,
+    calcularSubtotal,
+    calcularTotal,
+    buildWhatsAppMessage,
+} from "./cotizador";
+
+import {
+    COTIZADOR_CONFIG,
+} from "../../../data/cotizador";
 
 export default function Cotizador() {
     const [tipo, setTipo] = useState(
-        COTIZADOR_CONFIG.projectTypes[0].value
+        visualOptions[0].value
     );
 
     const [ambiente, setAmbiente] = useState("");
@@ -19,37 +31,6 @@ export default function Cotizador() {
     const [alto, setAlto] = useState("");
 
     const [items, setItems] = useState([]);
-
-    const formatCLP = (v) =>
-        "$" + v.toLocaleString("es-CL");
-
-    const visualOptions =
-        COTIZADOR_CONFIG.projectTypes.map(
-            (item, index) => ({
-                id: `visual_${index}`,
-                value: item.value,
-                label: item.label,
-                icon:
-                    index === 0
-                        ? "☀️"
-                        : index === 1
-                        ? "🌙"
-                        : index === 2
-                        ? "🟰"
-                        : "🧩",
-            })
-        );
-
-    const getTipoText = (precio) => {
-        const found =
-            COTIZADOR_CONFIG.projectTypes.find(
-                (item) => item.value === precio
-            );
-
-        return found
-            ? found.label
-            : COTIZADOR_CONFIG.projectTypes[0].label;
-    };
 
     const agregarCotizacion = () => {
         if (
@@ -66,11 +47,11 @@ export default function Cotizador() {
             return;
         }
 
-        const area =
-            (parseFloat(ancho) / 100) *
-            (parseFloat(alto) / 100);
-
-        const subtotal = Math.round(area * tipo);
+        const subtotal = calcularSubtotal(
+            ancho,
+            alto,
+            tipo
+        );
 
         const nuevoItem = {
             ambiente,
@@ -95,10 +76,7 @@ export default function Cotizador() {
         setItems(nuevos);
     };
 
-    const total = items.reduce(
-        (acc, item) => acc + item.subtotal,
-        0
-    );
+    const total = calcularTotal(items);
 
     const enviarWhatsApp = () => {
         if (!items.length) {
@@ -109,20 +87,11 @@ export default function Cotizador() {
             return;
         }
 
-        let msg =
-            `🏠 *Proyecto · ${COMPANY_NAME}*\n\n`;
-
-        items.forEach((it, i) => {
-            msg += `${i + 1}. *${it.ambiente}* — ${it.tipoText}\n`;
-
-            msg += `   Dimensiones: ${it.ancho}×${it.alto} cm → Inversión: ${formatCLP(
-                it.subtotal
-            )}\n`;
-        });
-
-        msg += `\n\n*VALOR ESTIMADO TOTAL: ${formatCLP(
+        const msg = buildWhatsAppMessage(
+            COMPANY_NAME,
+            items,
             total
-        )}*`;
+        );
 
         window.open(
             `${WHATSAPP_BASE}?text=${encodeURIComponent(

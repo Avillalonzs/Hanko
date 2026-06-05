@@ -4,7 +4,7 @@ import "./Home.css";
 import Productos from "../pages/home/productos/Productos";
 import Strip from "../pages/home/strip/Strip";
 import Galeria from "../pages/home/galeria/Galeria";
-import Cotizador from "../pages/home/cotizador/Cotizador";
+import Cotizador from "../pages/home/cotizador/Cotizador.jsx";
 import Contacto from "../pages/home/contacto/Contacto";
 import { StaticRouterProvider } from "react-router-dom";
 

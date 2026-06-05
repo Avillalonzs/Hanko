@@ -2,6 +2,10 @@
 
 import "../strip/Strip.css";
 
+import {
+    WHATSAPP_LINK,
+} from "../../../config/config";
+
 export default function Strip() {
     return (
         <div className="strip">
@@ -17,7 +21,7 @@ export default function Strip() {
             </div>
 
             <a
-                href="https://wa.me/56952499961"
+                href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noreferrer"
                 className="btn-strip"
