@@ -252,32 +252,6 @@ export default function Cotizador() {
                             + Añadir Elemento
                         </button>
 
-                        <div className="promo-side-card">
-                            <label>
-                                Código de Invitación Privada
-                            </label>
-
-                            <div className="promo-row">
-                                <input
-                                    type="text"
-                                    value={promoInput}
-                                    onChange={(e) =>
-                                        setPromoInput(
-                                            e.target.value
-                                        )
-                                    }
-                                    placeholder="HANKOWEB"
-                                />
-
-                                <button onClick={aplicarPromo}>
-                                    Validar
-                                </button>
-                            </div>
-
-                            <small id="promo-msg">
-                                {promoMsg}
-                            </small>
-                        </div>
                     </div>
 
                     <div className="cot-table-wrap">

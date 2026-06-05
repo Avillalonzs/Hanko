@@ -1,9 +1,9 @@
 // galeria/Galeria.jsx
 import img1 from "../../../assets/productos/Imagen1.webp";
 import img4 from "../../../assets/productos/Imagen4.webp";
-import img5 from "../../../assets/productos/Imagen5.webp";
 import img6 from "../../../assets/productos/Imagen6.webp";
-import img7 from "../../../assets/productos/Imagen7.webp";
+import img8 from "../../../assets/productos/Imagen8.webp";
+import Dobles from "../../../assets/productos/Duplex.webp";
 import { useState } from "react";
 import "./Galeria.css";
 
@@ -14,37 +14,37 @@ export default function Galeria() {
     const galleryItems = [
         {
         title: "House Chicureo",
-        subtitle: "Línea Doble Magistral",
+        subtitle: "Línea Zebra Duo",
         image: img1,
         full: img1,
         className: "wide",
     },
     {
-        title: "Residencia Lo Barnechea",
-        subtitle: "Minimalist Screen",
+        title: "Duplex Las Condes",
+        subtitle: "Linea Zebra Duo",
         image: img4,
         full: img4,
         className: "",
     },
     {
-        title: "Master Suite Las Condes",
-        subtitle: "Blackout Armonía",
-        image: img5,
-        full: img5,
+        title: "Oficinas Corporativas Providencia",
+        subtitle: "Blackout",
+        image: img6,
+        full: img6,
         className: "tall",
     },
     {
-        title: "Sala de Estar Providencia",
-        subtitle: "Zebra Elegance",
-        image: img6,
-        full: img6,
+        title: "Terraza Santiago",
+        subtitle: "Línea Screen",
+        image: img8,
+        full: img8,
         className: "",
     },
     {
-        title: "Oficinas Corporativas El Golf",
-        subtitle: "Screen Técnico",
-        image: img7,
-        full: img7,
+        title: "Home Office Huechuraba",
+        subtitle: "Dobles",
+        image: Dobles,
+        full: Dobles,
         className: "wide",
     },
     ];

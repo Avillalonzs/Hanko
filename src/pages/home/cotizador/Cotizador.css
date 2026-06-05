@@ -3,26 +3,46 @@
 .cotizador-layout {
     display: grid;
     grid-template-columns: 420px 1fr;
-    gap: 2.5rem;
+    gap: 1.5rem; /* Reducido ligeramente de 2.5rem para optimizar espacio */
     align-items: stretch;
+    
+    /* SOLUCIÓN: Limita el cotizador al alto de la pantalla en desktop */
+    height: calc(100vh - 40px); /* Resta un pequeño margen si tienes un header, o déjalo en 100vh */
+    max-height: 900px; /* Altura máxima para que no se estire infinito en pantallas gigantes */
+    box-sizing: border-box;
+    padding: 10px;
 }
 
 .cot-form-card {
     background: var(--negro-premium);
     border-radius: var(--radius-premium);
-    padding: 3rem 2.5rem;
+    padding: 2rem 1.8rem; /* Reducido de 3rem para evitar que rompa el alto */
     display: flex;
     flex-direction: column;
     border: 1px solid rgba(255, 255, 255, 0.05);
     box-shadow: var(--shadow-premium);
+    
+    /* SOLUCIÓN: Scroll interno si los campos del formulario exceden la pantalla */
+    overflow-y: auto;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+/* Estilizar la barra de scroll del formulario para mantener la estética premium */
+.cot-form-card::-webkit-scrollbar {
+    width: 6px;
+}
+.cot-form-card::-webkit-scrollbar-thumb {
+    background: rgba(197, 164, 110, 0.3); /* Color de tu variable --oro con opacidad */
+    border-radius: 3px;
 }
 
 .cot-form-title {
     font-family: var(--serif-premium);
-    font-size: 1.8rem;
+    font-size: 1.6rem; /* Ajustado ligeramente */
     font-weight: 400;
     color: var(--blanco);
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .cot-form-title span {
@@ -31,12 +51,12 @@
 }
 
 .field {
-    margin-bottom: 1.4rem;
+    margin-bottom: 1.2rem; /* Reducido de 1.4rem */
 }
 
 .field label {
     display: block;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.5rem;
     font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 0.1em;
@@ -47,7 +67,7 @@
 .field input,
 .field select {
     width: 100%;
-    height: 54px;
+    height: 48px; /* Reducido de 54px para ahorrar espacio vertical crítico */
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--radius-sm);
     background: rgba(255, 255, 255, 0.04);
@@ -56,6 +76,7 @@
     font-family: var(--sans-premium);
     font-size: 0.9rem;
     transition: all 0.3s;
+    box-sizing: border-box;
 }
 
 .field input:focus,
@@ -81,7 +102,7 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     background: rgba(255, 255, 255, 0.02);
     border-radius: var(--radius-sm);
-    padding: 0.8rem;
+    padding: 0.6rem 0.4rem; /* Más compacto */
     text-align: center;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -103,13 +124,13 @@
 
 .visual-icon {
     display: block;
-    font-size: 1.2rem;
-    margin-bottom: 0.4rem;
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
 }
 
 .btn-add {
     width: 100%;
-    height: 54px;
+    height: 48px; /* Ajustado en sintonía con los inputs */
     border: none;
     border-radius: var(--radius-sm);
     background: var(--oro);
@@ -120,7 +141,7 @@
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s;
-    margin-top: 1rem;
+    margin-top: 0.8rem;
 }
 
 .btn-add:hover {
@@ -128,8 +149,8 @@
 }
 
 .promo-side-card {
-    margin-top: auto;
-    padding-top: 2rem;
+    margin-top: 1.5rem; /* Evita usar 'auto' agresivo si rompe el flujo */
+    padding-top: 1.5rem;
     border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
@@ -151,12 +172,13 @@
 
 .promo-row input {
     flex: 1;
-    height: 46px;
+    height: 42px; /* Reducido ligeramente */
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--radius-sm);
     background: rgba(255, 255, 255, 0.04);
     color: var(--blanco);
     padding: 0 1rem;
+    box-sizing: border-box;
 }
 
 .promo-row button {
@@ -183,20 +205,26 @@
     flex-direction: column;
     overflow: hidden;
     box-shadow: var(--shadow-premium);
+    
+    /* SOLUCIÓN: Forzar a la tarjeta de la tabla a no estirar el viewport */
+    height: 100%; 
+    box-sizing: border-box;
 }
 
 .cot-table-head {
-    padding: 2rem;
+    padding: 1.5rem 2rem; /* Reducido de 2rem */
     border-bottom: 1px solid rgba(0, 0, 0, 0.04);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-shrink: 0; /* Evita que la cabecera colapse */
 }
 
 .cot-table-head h3 {
     font-family: var(--serif-premium);
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 400;
+    margin: 0;
 }
 
 .cot-items-count {
@@ -208,8 +236,11 @@
     border-radius: 20px;
 }
 
+/* SOLUCIÓN CRÍTICA: Contenedor de la tabla con scroll exclusivo */
 .table-scroll {
-    min-height: 300px;
+    flex: 1;
+    overflow-y: auto;
+    min-height: 150px; /* Reducido el min-height rígido anterior de 300px */
 }
 
 .cot-table {
@@ -219,6 +250,9 @@
 
 .cot-table thead {
     background: var(--crema-premium);
+    position: sticky; /* Hace que el encabezado de la tabla no se pierda al hacer scroll */
+    top: 0;
+    z-index: 1;
 }
 
 .cot-table th {
@@ -232,24 +266,25 @@
 }
 
 .cot-table td {
-    padding: 1.2rem 2rem;
+    padding: 1rem 2rem; /* Reducido de 1.2rem */
     border-bottom: 1px solid rgba(0, 0, 0, 0.03);
     color: var(--gris-texto-oscuro);
 }
 
 .cot-empty-row td {
-    height: 220px;
+    height: 180px; /* Reducido de 220px */
     text-align: center;
     color: var(--gris-medio);
 }
 
 .cot-total-bar {
-    padding: 2rem;
+    padding: 1.5rem 2rem; /* Reducido de 2rem */
     background: var(--crema-premium);
     border-top: 1px solid rgba(0, 0, 0, 0.04);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-shrink: 0; /* No permite que se aplaste */
 }
 
 .total-label {
@@ -262,19 +297,20 @@
 
 .total-value {
     font-family: var(--serif-premium);
-    font-size: 3rem;
+    font-size: 2.4rem; /* Reducido de 3rem para evitar saltos de línea molestos */
     font-weight: 700;
     color: var(--negro-absoluto);
 }
 
 .cot-footer {
-    padding: 1.5rem 2rem;
+    padding: 1.2rem 2rem;
     border-top: 1px solid rgba(0, 0, 0, 0.04);
+    flex-shrink: 0; /* No permite que se aplaste */
 }
 
 .btn-send-quote {
     width: 100%;
-    height: 56px;
+    height: 50px; /* Reducido de 56px */
     border: none;
     border-radius: var(--radius-sm);
     background: var(--negro-absoluto);
@@ -294,9 +330,18 @@
     cursor: pointer;
 }
 
+/* RESPONSIVE DESIGN */
 @media (max-width: 992px) {
     .cotizador-layout {
         grid-template-columns: 1fr;
+        height: auto; /* En pantallas medianas/móviles permitimos el scroll normal de página */
+        max-height: none;
+    }
+    
+    .cot-form-card, 
+    .cot-table-wrap {
+        height: auto;
+        overflow: visible;
     }
 }
 
@@ -306,6 +351,11 @@
     }
 
     .cot-form-card {
-        padding: 2rem 1.5rem;
+        padding: 1.5rem 1.2rem;
+    }
+    
+    .cot-table th, 
+    .cot-table td {
+        padding: 0.8rem 1rem; /* Comprime la tabla en celulares */
     }
 }
