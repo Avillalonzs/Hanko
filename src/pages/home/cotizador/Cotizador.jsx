@@ -15,7 +15,7 @@ import {
     calcularSubtotal,
     calcularTotal,
     buildWhatsAppMessage,
-} from "./cotizador";
+} from "./Cotizador.js";
 
 import {
     COTIZADOR_CONFIG,
